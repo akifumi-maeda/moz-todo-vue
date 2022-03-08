@@ -8,7 +8,7 @@
             id="new-todo-input"
             name="new-todo"
             autocomplete="off"
-            v-model="label"
+            v-model.lazy.trim="label"
         />
         <button type="submit">
             Add
