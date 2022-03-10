@@ -14,7 +14,10 @@
       </button>
     </div>
   </div>
-  <to-do-item-edit-form v-else :id="id" :label="label"></to-do-item-edit-form>
+  <to-do-item-edit-form v-else :id="id" :label="label"
+                        @item-edited="itemEdited"
+                        @edit-cancelled="editCancelled">
+  </to-do-item-edit-form>
 </template>
 
 <script>
@@ -41,6 +44,13 @@
           },
           toggleToItemEditForm() {
             this.isEditing = true;
+          },
+          itemEdited(newLabel) {
+            this.$emit('item-edited', newLabel);
+            this.isEditing = false;
+          },
+          editCancelled() {
+            this.isEditing = false;
           }
         }
     };
