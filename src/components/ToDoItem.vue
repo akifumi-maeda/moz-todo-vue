@@ -53,9 +53,17 @@
           itemEdited(newLabel) {
             this.$emit('item-edited', newLabel);
             this.isEditing = false;
+            this.focusOnEditButton();
           },
           editCancelled() {
             this.isEditing = false;
+            this.focusOnEditButton();
+          },
+          focusOnEditButton() {
+            this.$nextTick(() => {
+              const editButtonRef = this.$refs.editButton;
+              editButtonRef.focus();
+            });
           }
         }
     };
