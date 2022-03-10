@@ -1,5 +1,5 @@
 <template>
-  <div class="stack-small">
+  <div class="stack-small" v-if="!isEditing">
     <div class="custom-checkbox">
         <input type="checkbox" class="checkbox" :id="id" :checked="isDone"
             @change="$emit('checkbox-changed')" />
@@ -14,11 +14,16 @@
       </button>
     </div>
   </div>
+  <to-do-item-edit-form v-else :id="id" :label="label"></to-do-item-edit-form>
 </template>
 
 <script>
+    import ToDoItemEditForm from './ToDoItemEditForm.vue';
 
     export default {
+        components: {
+          ToDoItemEditForm
+        },
         props: {
             label: { required: true, type: String },
             done: { default: false, type: Boolean },
